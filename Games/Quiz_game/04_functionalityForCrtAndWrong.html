@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-size: 19px;
+      font-family: PT Serif;
+      color: #212020;
+      font-weight: 300;
+      text-align: center;
+      width: 100%;
+      min-height: 97vh;
+      background-image: url("images/bgimg1.jpg");
+      background-repeat: no-repeat;
+      background-size: 1365px;
+    }
+
+    h1 {
+      font-weight: 300px;
+      margin: 0px;
+      padding: 10px;
+      font-size: 30px;
+      background-color: #00000021;
+      color: #fff;
+    }
+
+    .question {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #000;
+    }
+
+    .answers {
+      margin-bottom: 20px;
+      text-align: left;
+      display: inline-block;
+      color: #000;
+    }
+
+    .answers label {
+      display: block;
+      margin-bottom: 15px;
+    }
+button {
+ display: inline-block;
+ border-radius: 4px;
+ background-color: #308e9b;
+ border: none;
+ color: #FFFFFF;
+ text-align: center;
+ font-size: 17px;
+ padding: 16px;
+ width: 130px;
+ transition: all 0.5s;
+ cursor: pointer;
+ margin: 5px;
+}
+
+button span {
+ cursor: pointer;
+ display: inline-block;
+ position: relative;
+ transition: 0.5s;
+}
+
+button span:after {
+/*  content: '»'; */
+ position: absolute;
+ opacity: 0;
+ top: 0;
+ transition: 0.5s;
+}
+#next ::after{
+    content: '»';
+    right: -15px;
+}
+#previous ::after{
+    content: '«';
+    left: -10px;
+}
+#next:hover span{
+    padding-right: 15px;
+}
+#previous:hover span{
+    padding-left: 15px;
+}
+button:hover span:after {
+ opacity: 1;
+ /* right: 0; */
+    }
+
+    .slide {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .active-slide {
+      opacity: 2;
+      z-index: 3;
+    }
+
+    .quiz-container {
+      position: relative;
+      height: 200px;
+      margin-top: 40px;
+    }
+
+    #currect {
+      display: none;
+      height: 200px;
+      width: 200px;
+    }
+
+    #wrong {
+      display: none;
+      height: 200px;
+      width: 200px;
+    }
+
+    .result {
+      display: inline-block;
+      height: 200px;
+      width: 200px;
+    }
+
+    @media(max-width:257px) {
+      #next {
+        margin-top: 134px;
+      }
+
+      #previous {
+        margin-top: 113px;
+      }
+    }
+
+    @media(max-width:207px) {
+      #next {
+        margin-top: 154px;
+      }
+    }
+
+    @media(max-width:266px) {
+      #previous {
+        margin-top: 170px;
+      }
+
+      #next {
+        margin-top: 170px;
+      }
+    }
+
+    @media(max-width:237px) {
+      #previous {
+        margin-top: 170px;
+      }
+    }
+
+    @media(max-width:241px) {
+      #submit {
+        margin-top: 150px;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <h1>Quiz Game</h1>
+  <div class="quiz-container">
+    <div id="quiz"></div>
+  </div>
+  <div id="notSelected" style="display:none;margin-bottom: 14px;">Please select the option </div>
+  <button id="previous" onclick="submitButton()">
+    <span>Previous</span>
+  </button>
+  <button id="next">
+    <span>Next</span>
+  </button>
+  <button id="submit">Submit Quiz</button>
+  <div id="results"></div>
+  <div class="result">
+    <img id="currect" src="images/currect.png">
+    <img id="wrong" src="images/wrong new.png">
+  </div>
+
+
+
+  <script>
+
+    (function () {
+
+      const myQuestions = [
+        {
+          question: "1. How many fingers are on the foot of a man?",
+          answers: {
+            a: "one",
+            b: "Five",
+            c: "Three"
+          },
+          correctAnswer: "b"
+
+        },
+        {
+          question: "2. Whose face was said to have launched 1000 ships?",
+          answers: {
+            a: "Rowan Atkinson",
+            b: "Barbara Mori",
+            c: "Helen of Troy"
+          },
+          correctAnswer: "c"
+        },
+        {
+          question: "3. Water boils at 212 degrees on which temperature scale?",
+          answers: {
+            a: "Kelvin",
+            b: "Fahrenheit",
+            c: "Celsius",
+
+          },
+          correctAnswer: "b"
+        },
+        {
+          question: "4. What is the Italian word for pie?",
+          answers: {
+            a: "Pie",
+            b: "Lasagna",
+            c: "Pizza",
+
+          },
+          correctAnswer: "c"
+        },
+        {
+          question: "5. What was Marilyn Monroe's natural hair colour?",
+          answers: {
+            a: "Ginger",
+            b: "Blue",
+            c: "Brown",
+
+          },
+          correctAnswer: "a"
+        },
+        {
+          question: "6. Which two metals is pewter made from?",
+          answers: {
+            a: "Copper and Bronze",
+            b: "Tin and lead.",
+            c: "Zinc and gold",
+
+          },
+          correctAnswer: "b"
+        },
+        {
+          question: "7. What takes place in Hong Kong's Happy Valley?",
+          answers: {
+            a: "Monkey racing",
+            b: "Dog racing.",
+            c: "Horse racing",
+
+          },
+          correctAnswer: "c"
+        },
+        {
+          question: "8. Which country does the sport of pelato come from?",
+          answers: {
+            a: "Portugal",
+            b: "Spain",
+            c: "Italy",
+
+          },
+          correctAnswer: "b"
+        },
+        {
+          question: "9. How many sides, in total, would three triangles and three rectangles have?",
+          answers: {
+            a: "21",
+            b: "19",
+            c: "12",
+
+          },
+          correctAnswer: "a"
+        },
+        {
+          question: "10. Hitler party which came into power in 1933 is known as?",
+          answers: {
+            a: "Labour Party",
+            b: "Nazi Party",
+            c: "Democratic Party",
+
+          },
+          correctAnswer: "b"
+        },
+      ];
+
+      var lettr = "";
+
+      function buildQuiz() {
+
+        const output = [];
+
+
+        myQuestions.forEach((currentQuestion, questionNumber) => {
+
+          const answers = [];
+          var id = 0;
+
+          for (letter in currentQuestion.answers) {
+
+            answers.push(
+              `<label style="cursor:pointer;">
+             <input type="radio" id="que${id}" style="cursor:pointer;" name="question${questionNumber}" value="${letter}">
+              ${letter} :
+              ${currentQuestion.answers[letter]}
+           </label>`
+            );
+            id++;
+            lettr = letter;
+          }
+
+
+          output.push(
+            `<div class="slide">
+           <div class="question"> ${currentQuestion.question} </div>
+           <div class="answers"> ${answers.join("")} </div>
+         </div>`
+          );
+        });
+
+
+        quizContainer.innerHTML = output.join("");
+      }
+
+      function showResults() {
+
+        document.getElementById("previous").style.display = "none";
+        showNextSlide()
+
+
+
+        const answerContainers = quizContainer.querySelectorAll(".answers");
+
+
+        let numCorrect = 0;
+
+
+        myQuestions.forEach((currentQuestion, questionNumber) => {
+
+          const answerContainer = answerContainers[questionNumber];
+          const selector = `input[name=question${questionNumber}]:checked`;
+          const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+
+          if (userAnswer === currentQuestion.correctAnswer) {
+            numCorrect++;
+          }
+        });
+      }
+
+      function showSlide(n) {
+        slides[currentSlide].classList.remove("active-slide");
+        slides[n].classList.add("active-slide");
+        currentSlide = n;
+
+        if (currentSlide === 0) {
+          previousButton.style.display = "none";
+        } else {
+          previousButton.style.display = "inline-block";
+        }
+
+        if (currentSlide === slides.length - 1) {
+          nextButton.style.display = "none";
+          submitButton.style.display = "inline-block";
+        } else {
+          nextButton.style.display = "inline-block";
+          submitButton.style.display = "none";
+        }
+      }
+      var getSelectedValue = "";
+
+      function showNextSlide() {
+
+
+
+        getSelectedValue = document.querySelector('input[name="question' + currentSlide + '"]:checked');
+        if (getSelectedValue == null) {
+            document.getElementById("notSelected").style.display ="block";
+            setTimeout(() => { document.getElementById("notSelected").style.display ="none";}, 2500);
+             return false;
+        }
+
+
+
+        var quesAnsArr = "";
+
+        for (var i = 0; i < myQuestions.length; i++) {
+          quesAnsArr = myQuestions[currentSlide];
+        }
+
+        var anse = quesAnsArr.correctAnswer;
+
+
+        if (anse == getSelectedValue.value) {
+          document.querySelector("#currect").style.display = "block";
+          setTimeout(() => { document.querySelector("#currect").style.display = "none"; }, 1000);
+
+
+        }
+        else {
+          document.querySelector("#wrong").style.display = "block";
+          setTimeout(() => { document.querySelector("#wrong").style.display = "none"; }, 1000);
+        }
+        if (currentSlide < myQuestions.length - 1) {
+          setTimeout(() => { showSlide(currentSlide + 1); }, 1000);
+        }
+      }
+
+      function showPreviousSlide() {
+        showSlide(currentSlide - 1);
+      }
+      const quizContainer = document.getElementById("quiz");
+      const resultsContainer = document.getElementById("results");
+      const submitButton = document.getElementById("submit");
+
+      buildQuiz();
+
+      const previousButton = document.getElementById("previous");
+      const nextButton = document.getElementById("next");
+      const slides = document.querySelectorAll(".slide");
+      let currentSlide = 0;
+
+      showSlide(0);
+
+
+      submitButton.addEventListener("click", showResults);
+      previousButton.addEventListener("click", showPreviousSlide);
+      nextButton.addEventListener("click", showNextSlide);
+
+
+
+    })();
+  </script>
+</body>
+
+</html>

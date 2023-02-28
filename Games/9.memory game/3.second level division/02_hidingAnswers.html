@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Displaying Question Marks to hide the answers </title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+
+      width: 100%;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url("bg1.png");
+    }
+    #main-game{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center; 
+    }
+    /* (A) CONTAINER */
+    #mem-game {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      grid-gap: 10px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    /* (B) CARDS */
+    .mem-card {
+      padding: 10px;
+      cursor: pointer;
+      background: #e5e5e5;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- (B) GAME CONTAINER -->
+  <div id="main-game">
+    <div id="main-head" style="font-size: xx-large;font-weight: bold;color: #ade7d1;margin-bottom: 2rem;">Memory Game</div>
+  <div id="mem-game"></div>
+  </div>
+
+  <script>
+    var mem = {
+      // (A) PROPERTIES
+      // (A1) HTML ELEMENTS
+      hWrap: null, // HTML game wrapper
+      hCards: null, // HTML cards
+      // (A2) GAME SETTINGS
+      sets: 6, // Total number of cards to match
+      hint: 1000, // How long to show mismatched cards
+      url: "", // Optional, URL to images
+      // (A3) FLAGS
+      loaded: 0, // Total number of assets loaded
+      moves: 0, // Total number of moves
+      last: null, // Last opened card
+      grid: null, // Current play grid
+      matches: null, // Current matched cards
+      locked: null, // 2 cards chosen did not match
+
+      // (B) PRELOAD
+      preload: function () {
+        // (B1) GET HTML GAME WRAPPER
+        mem.hWrap = document.getElementById("mem-game");
+
+        // (B2) PRELOAD IMAGES
+        for (let i = 0; i <= mem.sets; i++) {
+          let img = document.createElement("img");
+          img.onload = function () {
+            mem.loaded++;
+            if (mem.loaded == mem.sets + 1) { mem.init(); }
+          };
+          img.src = mem.url + "smiley-" + i + ".png";
+        }
+      },
+
+      // (C) INIT GAME
+      init: function () {
+        // (C1) RESET
+        if (mem.locked != null) {
+          clearTimeout(mem.locked);
+          mem.locked = null;
+        }
+        mem.hCards = [];
+        mem.grid = [];
+        mem.matches = [];
+        mem.moves = 0;
+        mem.last = null;
+        mem.locked = null;
+        mem.hWrap.innerHTML = "";
+
+        // (C2) RANDOM RESHUFFLE CARDS
+
+        // Image matching functionality
+        let current = mem.sets * 2, temp, random;
+        for (var i = 1; i <= mem.sets; i++) {
+          mem.grid.push(i);
+          mem.grid.push(i);
+        }
+        while (0 !== current) {
+          random = Math.floor(Math.random() * current);
+          current -= 1;
+          temp = mem.grid[current];
+          mem.grid[current] = mem.grid[random];
+          mem.grid[random] = temp;
+        }
+        // Image matching functionality ended
+
+        // (C3) CREATE HTML CARDS
+        for (let i = 0; i < mem.sets * 2; i++) {
+          let card = document.createElement("div");
+          card.className = "mem-card";
+          card.innerHTML = `<img src='${mem.url}smiley-0.png'/>`;
+          card.dataset.idx = i;
+          card.onclick = mem.open;
+          mem.hWrap.appendChild(card);
+          mem.hCards.push(card);
+        }
+        // (C3) CREATE HTML CARDS ENDED
+      },
+    };
+
+    // (F) INIT GAME
+    window.addEventListener("DOMContentLoaded", mem.preload);
+  </script>
+</body>
+
+</html>

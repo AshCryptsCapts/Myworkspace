@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>creatiing question and options</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-size: 19px;
+      font-family: PT Serif;
+      color: #212020;
+      font-weight: 300;
+      text-align: center;
+      width: 100%;
+      min-height: 97vh;
+      background-image: url("images/bgimg1.jpg");
+      background-repeat: no-repeat;
+      background-size: 1365px;
+    }
+
+    h1 {
+      font-weight: 300px;
+      margin: 0px;
+      padding: 10px;
+      font-size: 30px;
+      background-color: #00000021;
+      color: #fff;
+    }
+
+    .question {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #000;
+    }
+
+    .answers {
+      margin-bottom: 20px;
+      text-align: left;
+      display: inline-block;
+      color: #000;
+    }
+
+    .answers label {
+      display: block;
+      margin-bottom: 15px;
+    }
+button {
+ display: inline-block;
+ border-radius: 4px;
+ background-color: #308e9b;
+ border: none;
+ color: #FFFFFF;
+ text-align: center;
+ font-size: 17px;
+ padding: 16px;
+ width: 130px;
+ transition: all 0.5s;
+ cursor: pointer;
+ margin: 5px;
+}
+
+button span {
+ cursor: pointer;
+ display: inline-block;
+ position: relative;
+ transition: 0.5s;
+}
+
+button span:after {
+ position: absolute;
+ opacity: 0;
+ top: 0;
+ transition: 0.5s;
+}
+#next ::after{
+    content: '»';
+    right: -15px;
+}
+#next:hover span{
+    padding-right: 15px;
+}
+
+button:hover span:after {
+ opacity: 1;
+    }
+
+    .slide {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .active-slide {
+      opacity: 2;
+      z-index: 3;
+    }
+
+    .quiz-container {
+      position: relative;
+      height: 200px;
+      margin-top: 40px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>Quiz Game</h1>
+  <div class="quiz-container">
+    <div id="quiz"></div>
+  </div>
+  <button id="next">
+    <span>Next</span>
+  </button>
+  </div>
+
+
+
+  <script>
+    (function () {
+
+      const myQuestions = [
+        {
+          question: "1. How many fingers are on the foot of a man?",
+          answers: {
+            a: "one",
+            b: "Five",
+            c: "Three"
+          },
+          correctAnswer: "b"
+
+        }];
+      var lettr = "";
+
+      function buildQuiz() {
+        const output = [];
+
+
+        myQuestions.forEach((currentQuestion, questionNumber) => {
+
+          const answers = [];
+          var id = 0;
+
+          for (letter in currentQuestion.answers) {
+
+            answers.push(
+              `<label style="cursor:pointer;">
+               <input type="radio" id="que${id}" style="cursor:pointer;" name="question${questionNumber}" value="${letter}">
+                ${letter} :
+                ${currentQuestion.answers[letter]}
+              </label>`
+            );
+            id++;
+            lettr = letter;
+          }
+
+
+          output.push(
+            `<div class="slide">
+              <div class="question"> ${currentQuestion.question} </div>
+              <div class="answers"> ${answers.join("")} </div>
+              </div>`
+          );
+        });
+
+
+        quizContainer.innerHTML = output.join("");
+      }
+
+      function showResults() {
+
+        document.getElementById("previous").style.display = "none";
+        showNextSlide()
+
+
+
+        const answerContainers = quizContainer.querySelectorAll(".answers");
+
+
+        let numCorrect = 0;
+
+
+        myQuestions.forEach((currentQuestion, questionNumber) => {
+
+          const answerContainer = answerContainers[questionNumber];
+          const selector = `input[name=question${questionNumber}]:checked`;
+          const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+
+          if (userAnswer === currentQuestion.correctAnswer) {
+
+            numCorrect++;
+
+
+
+          } else {
+
+          }
+        });
+
+      }
+      function showSlide(n) {
+        slides[currentSlide].classList.remove("active-slide");
+        slides[n].classList.add("active-slide");
+        currentSlide = n;
+
+        if (currentSlide === 0) {
+          previousButton.style.display = "none";
+        } else {
+          previousButton.style.display = "inline-block";
+        }
+      }
+
+
+      function showNextSlide() {
+        var quesAnsArr = "";
+
+        quesAnsArr = myQuestions[currentSlide];
+
+      }
+      const quizContainer = document.getElementById("quiz");
+
+      buildQuiz();
+      const slides = document.querySelectorAll(".slide");
+      let currentSlide = 0;
+      showSlide(0);
+    })(); 
+  </script>
+</body>
+
+</html>
