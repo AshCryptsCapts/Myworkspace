@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 100vh;
+            background-color: #efefef;
+        }
+
+        nav {
+            background-color: #ffffff;
+            color: #fff;
+        }
+
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .left-icons {
+            display: flex;
+        }
+
+        .left-icons>i {
+            margin: 6px;
+        }
+
+
+        .mainProfilediv {
+            display: none;
+            height: 33px;
+            width: 33px;
+        }
+
+        .mainProfileImg {
+            width: 100%;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .mainFeed {
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .parentRow {
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        .parentss {
+            display: flex;
+            justify-content: center;
+            width: 31rem;
+            background-color: #ededed;
+        }
+
+        .post {
+            width: 100%;
+            height: auto;
+            background: #ffffff;
+            border: 1px solid #c4c4c4;
+            margin-top: 40px;
+        }
+
+        .ProfileDP {
+            width: 39px;
+            height: 39px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            object-fit: cover;
+        }
+
+        .info {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .info .username {
+            width: auto;
+            font-weight: bold;
+            color: #000;
+            font-size: 14px;
+            margin-left: 10px;
+            margin-bottom: 0;
+        }
+
+        .info .options {
+            height: 10px;
+            cursor: pointer;
+        }
+
+        .info .user {
+            display: flex;
+            align-items: center;
+        }
+
+        .info .profile-pic {
+            height: 40px;
+            width: 40px;
+            padding: 0;
+            background: none;
+        }
+
+        .info .profile-pic img {
+            border: none;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .post-content {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .likes {
+            font-weight: bold;
+        }
+
+        .description {
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .description span {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .post-time {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 12px;
+        }
+
+        .action-btn {
+            width: 70px;
+            height: 100%;
+            background: none;
+            border: none;
+            outline: none;
+            text-transform: capitalize;
+            font-size: 16px;
+            color: rgb(0, 162, 255);
+            opacity: 0.5;
+            margin-left: 5px;
+            transition: .3s ease-in-out;
+        }
+
+        .action-btn:hover {
+            background-color: #acacac;
+            color: rgb(17, 17, 17);
+            border-radius: 3px;
+        }
+
+        .reaction-wrapper {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            margin-top: -20px;
+            align-items: center;
+        }
+
+        .reaction-wrapper .icon {
+            height: 25px;
+            margin: 0;
+            margin-right: 20px;
+        }
+
+        .reaction-wrapper .icon.save {
+            margin-left: auto;
+        }
+
+        .right-col {
+            padding: 20px;
+        }
+
+        .profile-card {
+            width: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            ;
+            margin-bottom: 10px;
+        }
+
+        .profile-card .profile-pic {
+            flex: 0 0 auto;
+            padding: 0;
+            background: none;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .profile-card:first-child .profile-pic {
+            width: 70px;
+            height: 70px;
+        }
+
+        .profile-picImg {
+            width: 100%;
+            border-radius: 50%;
+            height: 65px;
+            object-fit: cover;
+        }
+
+        .profile-card .profile-pic img {
+            border: none;
+        }
+
+        #profile-picImages {
+            width: 100%;
+            height: 39px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-card .username {
+            font-weight: 500;
+            font-size: 14px;
+            color: #000;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .sub-text {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .action-btn {
+            opacity: 1;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .suggestion-text {
+            font-size: 14px;
+            color: #8d8d8d;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 1100px) {
+            .rightSectionClass {
+                display: none;
+            }
+
+            .nav-wrapper,
+            .wrapper {
+                width: 100%;
+            }
+
+            .wrapper {
+                display: block;
+            }
+
+            .mainProfilediv {
+                display: block;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .post-image {
+                height: 300px;
+            }
+        }
+
+        #rightSection {
+            margin-top: 39px;
+            background: #ffffff;
+            border: 1px solid #c4c4c4;
+        }
+
+        .main-row {
+            align-items: center;
+            justify-content: center;
+        }
+
+        .s4Iyt {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .left-prof {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img>img {
+            width: 100%;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .myname {
+            font-weight: 500;
+            font-size: 25px;
+            color: black;
+            cursor: pointer;
+
+        }
+
+        .myname>span {
+            color: #00000082;
+        }
+
+        .follw-details {
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .uploads {
+            margin-top: 2px;
+        }
+
+        .post-headers {
+            cursor: pointer;
+        }
+
+        .border {
+            border: none !important;
+        }
+
+        .play {
+            margin-left: 80px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .up2 {
+                margin-top: 10px;
+            }
+
+            .left-prof {
+                align-items: center;
+            }
+
+            #video3 {
+                margin-top: 10px;
+            }
+
+            .myname {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media only screen and (max-width: 575px) {
+            .up1 {
+                margin-top: 10px;
+            }
+
+            .up2 {
+                margin-top: 20px;
+            }
+
+            .left-prof {
+                align-items: center;
+            }
+
+            #video2 {
+                margin-top: 10px;
+            }
+
+            #video3 {
+                margin-top: 10px;
+            }
+
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fa-arrow-left {
+            color: #000;
+            display: none;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg " id="navbar">
+        <div class="left-icons">
+            <i class="fas fa-arrow-left fa-1x"></i>
+            <img alt="Instagram" class="s4Iyt" src="/KidsCoding/coding_kids/images/Instagramimgs/insta.png"
+                srcset="/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png 2x">
+        </div>
+        <div class="mainProfilediv"><img class="mainProfileImg"
+                src="/KidsCoding/coding_kids/images/Instagramimgs/profileimgs.jpg" onclick="displayProfile()"
+                style="cursor: pointer;"></div>
+    </nav>
+    <div class="container mainFeed">
+        <div class="row parentRow">
+            <div class="col-md-8">
+                <section class="main">
+                    <div class="wrapper">
+                        <div class="left-col">
+                            <div class="post">
+                                <div class="info">
+                                    <div class="user">
+                                        <div class="profile-pic"><img class="ProfileDP"
+                                                src="/KidsCoding/coding_kids/images/Instagramimgs/post1.jpg" alt="">
+                                        </div>
+                                        <p class="username">Riya_Manoj</p>
+                                    </div>
+                                    <img src="/KidsCoding/coding_kids/images/img/option.PNG" class="options" alt="">
+                                </div>
+                                <img src="/KidsCoding/coding_kids/images/Instagramimgs/post1.jpg" class="post-image"
+                                    alt="">
+                                <div class="post-content">
+                                    <div class="reaction-wrapper">
+                                        <div style="display: flex;">
+                                            <i class="fa fa-heart" id="likedd"
+                                                style="font-size: 1.7rem; cursor: pointer;" onclick="likedBro()"></i>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-solid fa-share"
+                                                style="font-size: 1.7rem; cursor: pointer;margin-left: 10px;"></i>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex"><span id="likesDislikes"></span>&nbsp;&nbsp;<span
+                                            id="likesss" style="display: none;">likes</span></div>
+                                    <p class="description"><span>Riya_Manoj</span> Sunset feels.<br>#sunset #feels
+                                        #dayspentwell</p>
+                                    <p class="post-time">2 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="post">
+                                <div class="info">
+                                    <div class="user">
+                                        <div class="profile-pic"><img class="ProfileDP"
+                                                src="/KidsCoding/coding_kids/images/Instagramimgs/post2.jpg" alt="">
+                                        </div>
+                                        <p class="username">Harshit_Reddy</p>
+                                    </div>
+                                    <img src="/KidsCoding/coding_kids/images/img/option.PNG" class="options" alt="">
+                                </div>
+
+                                <img src="/KidsCoding/coding_kids/images/Instagramimgs/post2.1.jpg" class="post-image"
+                                    alt="">
+                                <div class="post-content">
+                                    <div class="reaction-wrapper">
+                                        <div style="display: flex;">
+                                            <i class="fa fa-heart" id="likedd1"
+                                                style="font-size: 1.7rem; cursor: pointer;"
+                                                onclick="likedBro1()"></i><br>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-solid fa-share"
+                                                style="font-size: 1.7rem; cursor: pointer;margin-left: 10px;"></i>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex"><span id="likesDislikes1"></span>&nbsp;&nbsp;<span
+                                            id="likesss1" style="display:none;">likes</span></div>
+                                    <p class="description"><span>Harshit_Reddy</span> Make every outfit Count.<br>#OOTD
+                                        #feels #fashion</p>
+                                    <p class="post-time">2 minutes ago</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-4 rightSectionClass">
+                <section class="main" id="rightSection">
+                    <div class="wrapper">
+                        <div class="right-col">
+                            <div class="profile-card">
+                                <div class="profile-pic">
+                                    <img src="/KidsCoding/coding_kids/images/Instagramimgs/profileimgs.jpg" alt=""
+                                        class="profile-picImg" onclick="displayProfile()">
+                                </div>
+                                <div>
+                                    <p class="username" onclick="displayProfile()">Kunal_kumar22</p>
+                                    <p class="sub-text">kunaal kumar</p>
+                                </div>
+                            </div>
+                            <p class="suggestion-text">Suggestions for you</p>
+                            <div class="profile-card">
+                                <div class="profile-pic">
+                                    <img src="/KidsCoding/coding_kids/images/Instagramimgs/skygetAi.png" alt=""
+                                        id="profile-picImages">
+                                </div>
+                                <div>
+                                    <p class="username">Skyget_AI</p>
+                                    <p class="sub-text">follows you</p>
+                                </div>
+                                <button class="action-btn">follow</button>
+                            </div>
+                            <div class="profile-card">
+                                <div class="profile-pic">
+                                    <img src="/KidsCoding/coding_kids/images/Instagramimgs/zomantsol.jpg" alt=""
+                                        id="profile-picImages">
+                                </div>
+                                <div>
+                                    <p class="username">Zomant_Solutions</p>
+                                    <p class="sub-text">follow the page</p>
+                                </div>
+                                <button class="action-btn">follow</button>
+                            </div>
+                            <div class="profile-card">
+                                <div class="profile-pic">
+                                    <img src="/KidsCoding/coding_kids/images/Instagramimgs/pspkimg.jpg" alt=""
+                                        id="profile-picImages">
+                                </div>
+                                <div>
+                                    <p class="username">PavanKalyan_Official</p>
+                                    <p class="sub-text">followed by Riya_Manoj</p>
+                                </div>
+                                <button class="action-btn">follow</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="container myprofile" style="display: none;background-color: #fff;margin-top: 1rem;">
+        <div class="row main-row">
+            <div class="col-md-4 left-prof">
+                <div class="profile-img">
+                    <img src="/KidsCoding/coding_kids/images/Instagramimgs/profileimgs.jpg">
+                </div>
+                <div class="myname">
+                    <p>kunal_kumar</p>
+                    <span>#Foodie</span>
+                    <span> #Musiclover</span>
+                </div>
+            </div>
+            <div class="col-md-8 right-prof">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 follw-details">
+                        <p>3<br>
+                            <span>Posts</span>
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 follw-details">
+                        <p>1K<br>
+                            <span>Followers</span>
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 follw-details">
+                        <p>250<br>
+                            <span>Following</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="col-md-12 post-headers">
+            <div class="row">
+                <div class="border">
+                    <i class="fas fa-border-all fa-2x"></i>
+                </div>
+                <div class="play">
+                    <i class="fas fa-play fa-2x"></i>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="parant-up">
+            <div class="row uploads">
+                <div class="col-md-4 col-sm-5">
+                    <img src="/KidsCoding/coding_kids/images/Instagramimgs/upload1.jpeg"
+                        style="width:100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="col-md-4 col-sm-5">
+                    <img class="up1" src="/KidsCoding/coding_kids/images/Instagramimgs/upload2.jpeg"
+                        style="width:100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="col-md-4 col-sm-5">
+                    <img class="up2" src="/KidsCoding/coding_kids/images/Instagramimgs/upload3.jpeg"
+                        style="width:100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </div><br>
+        <div class="videoParent" style="display: none;">
+            <div class="row">
+                <div class="col-md-4 col-sm-5">
+                    <iframe width="100%" height="381" src="https://www.youtube.com/embed/w0woKlj5Zd0"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="col-md-4 col-sm-5" id="video2">
+                    <iframe width="100%" height="381" src="https://www.youtube.com/embed/z0TQ7lCQBwU"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="col-md-4 col-sm-5">
+                    <iframe width="100%" height="381" src="https://www.youtube.com/embed/U8Y6gRG9EYI"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div><br>
+    </div>
+
+    <script>
+        var count = 1;
+
+        function likedBro() {
+            document.getElementById('likedd').style.color = "red";
+            document.getElementById('likesss').style.display = "block";
+            document.getElementById('likesDislikes').innerHTML = count;
+        }
+        var count1 = 1;
+
+        function likedBro1() {
+
+            document.getElementById('likedd1').style.color = "red";
+            document.getElementById('likesss1').style.display = "block";
+            document.getElementById('likesDislikes1').innerHTML = count1;
+        }
+
+        var myBorder = document.querySelector(".border");
+        var playVid = document.querySelector(".play");
+        var myVideos = document.querySelector(".videoParent");
+
+        var userUploads = document.querySelector(".parant-up");
+
+        playVid.onclick = function () {
+            userUploads.style.display = "none";
+            myVideos.style.display = "block";
+        }
+        myBorder.onclick = function () {
+            userUploads.style.display = "block";
+            myVideos.style.display = "none";
+
+        }
+
+        function displayProfile() {
+            document.querySelector(".myprofile").style.display = "block";
+            document.querySelector(".mainFeed").style.display = "none";
+            arrowLeft.style.display = "block";
+        }
+
+        var arrowLeft = document.querySelector(".fa-arrow-left");
+
+        arrowLeft.onclick = function () {
+            document.querySelector(".myprofile").style.display = "none";
+            document.querySelector(".mainFeed").style.display = "block";
+            arrowLeft.style.display = "none";
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

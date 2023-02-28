@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch events</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1b3a4b;
+            margin: 0;
+        }
+
+        main {
+            width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .left-block {
+            width: 160px;
+            background-color: white;
+            border: 1px solid #e0e0e0
+        }
+
+        .colors {
+            background-color: #ece8e8;
+            text-align: center;
+            padding-bottom: 5px;
+            padding-top: 10px;
+        }
+
+        .colors button {
+            display: inline-block;
+            border: 1px solid #00000026;
+            border-radius: 0;
+            outline: none;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            margin-bottom: 5px
+        }
+
+        .colors button:nth-of-type(1) {
+            background-color: #0000ff;
+        }
+
+        .colors button:nth-of-type(2) {
+            background-color: #009fff;
+        }
+
+        .colors button:nth-of-type(3) {
+            background-color: #0fffff;
+        }
+
+        .colors button:nth-of-type(4) {
+            background-color: #bfffff;
+        }
+
+        .colors button:nth-of-type(5) {
+            background-color: #000000;
+        }
+
+        .colors button:nth-of-type(6) {
+            background-color: #333333;
+        }
+
+        .colors button:nth-of-type(7) {
+            background-color: #666666;
+        }
+
+        .colors button:nth-of-type(8) {
+            background-color: #999999;
+        }
+
+        .colors button:nth-of-type(9) {
+            background-color: #ffcc66;
+        }
+
+        .colors button:nth-of-type(10) {
+            background-color: #ffcc00;
+        }
+
+        .colors button:nth-of-type(11) {
+            background-color: #ffff00;
+        }
+
+        .colors button:nth-of-type(12) {
+            background-color: #ffff99;
+        }
+
+        .colors button:nth-of-type(13) {
+            background-color: #003300;
+        }
+
+        .colors button:nth-of-type(14) {
+            background-color: #555000;
+        }
+
+        .colors button:nth-of-type(15) {
+            background-color: #00ff00;
+        }
+
+        .colors button:nth-of-type(16) {
+            background-color: #99ff99;
+        }
+
+        .colors button:nth-of-type(17) {
+            background-color: #f00000;
+        }
+
+        .colors button:nth-of-type(18) {
+            background-color: #ff6600;
+        }
+
+        .colors button:nth-of-type(19) {
+            background-color: #ff9933;
+        }
+
+        .colors button:nth-of-type(20) {
+            background-color: #f5deb3;
+        }
+
+        .colors button:nth-of-type(21) {
+            background-color: #330000;
+        }
+
+        .colors button:nth-of-type(22) {
+            background-color: #663300;
+        }
+
+        .colors button:nth-of-type(23) {
+            background-color: #cc6600;
+        }
+
+        .colors button:nth-of-type(24) {
+            background-color: #deb887;
+        }
+
+        .colors button:nth-of-type(25) {
+            background-color: #aa0fff;
+        }
+
+        .colors button:nth-of-type(26) {
+            background-color: #cc66cc;
+        }
+
+        .colors button:nth-of-type(27) {
+            background-color: #ff66ff;
+        }
+
+        .colors button:nth-of-type(28) {
+            background-color: #ff99ff;
+        }
+
+        .colors button:nth-of-type(29) {
+            background-color: #e8c4e8;
+        }
+
+        .colors button:nth-of-type(30) {
+            background-color: #ffffff;
+        }
+
+        .brushes {
+            padding-top: 5px
+        }
+
+        .brushes button {
+            display: block;
+            width: 100%;
+            border: 0;
+            border-radius: 0;
+            background-color: #ece8e8;
+            margin-bottom: 5px;
+            padding: 5px;
+            height: 30px;
+            outline: none;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .brushes button:after {
+            height: 1px;
+            display: block;
+            background: #808080;
+            content: '';
+        }
+
+        .brushes button:nth-of-type(1):after {
+            height: 1px;
+        }
+
+        .brushes button:nth-of-type(2):after {
+            height: 2px;
+        }
+
+        .buttons {
+            height: 80px;
+            padding-top: 10px;
+        }
+
+        .buttons button {
+            display: block;
+            width: 100%;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 5px;
+            padding: 5px;
+            height: 30px;
+            outline: none;
+            position: relative;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .buttons {
+            white-space: normal;
+        }
+
+        .tools {
+            display: flex;
+            justify-content: space-evenly;
+            min-width: 20px;
+            cursor: pointer;
+        }
+
+        #clear {
+            background-color: #95d0f0;
+        }
+
+        #save {
+            background-color: #91c6d4;
+        }
+
+        #share {
+            background-color: #b6efff;
+        }
+
+        /* For modal */
+
+        .mt-100 {
+            margin-top: 100px
+        }
+
+        .modal-title {
+            font-weight: 900
+        }
+
+        .modal-content {
+            margin-top: 19rem;
+            border-radius: 13px
+        }
+
+        .modal-body {
+            color: #3b3b3b
+        }
+
+        .img-thumbnail {
+            border-radius: 50px;
+            width: 95px;
+            height: 95px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fab:before {
+            position: relative;
+        }
+
+        .smd {
+            width: 200px;
+            font-size: small;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-footer {
+            display: block;
+        }
+
+        .ur {
+            border: none;
+            background-color: #e6e2e2;
+            border-bottom-left-radius: 15px;
+            border-top-left-radius: 15px
+        }
+
+        .cpy {
+            border: none;
+            background-color: #e6e2e2;
+            border-bottom-right-radius: 15px;
+            border-top-right-radius: 15px;
+            cursor: pointer;
+        }
+
+        button.focus,
+        button:focus {
+            outline: 0;
+            box-shadow: none !important
+        }
+
+        .ur.focus,
+        .ur:focus {
+            outline: 0;
+            box-shadow: none !important
+        }
+
+        .message {
+            font-size: 11px;
+            color: #ee5535
+        }
+
+        .close {
+            position: absolute;
+            top: -1rem;
+            right: -1rem;
+            background-color: #000 !important;
+            border-radius: 4rem;
+            height: 4rem;
+            width: 4rem;
+            opacity: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .closeLetter {
+            color: #fff;
+            color: #ff5050;
+            font-size: 3rem;
+            position: relative;
+            top: -7px;
+        }
+
+        a[target="_blank"] {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        /* For modal */
+        .right-block {
+            width: 350px;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+        }
+
+        #paint-canvas {
+            cursor: crosshair;
+            background-color: white;
+            width: fit-content;
+            height: fit-content;
+        }
+
+        .modal-body>.icons-justifying {
+            justify-content: space-evenly;
+        }
+
+        .model-margin {
+            margin-top: 13rem;
+            border-radius: 50px;
+
+        }
+
+        @media only screen and (max-width: 520px) {
+            .left-block {
+                width: 145px;
+            }
+
+            .right-block {
+                width: 340px;
+            }
+
+            #paint-canvas {
+                width: 340px;
+            }
+        }
+
+        @media only screen and (max-width: 495px) {
+            .left-block {
+                width: 130px;
+            }
+
+            .right-block {
+                width: 325px;
+            }
+
+            #paint-canvas {
+                width: 325px;
+            }
+        }
+
+        @media only screen and (max-width: 465px) {
+            .left-block {
+                width: 120px;
+            }
+
+            .right-block {
+                width: 310px;
+            }
+
+            #paint-canvas {
+                width: 310px;
+            }
+        }
+
+        @media only screen and (max-width: 440px) {
+            .left-block {
+                width: 100px;
+            }
+
+            .right-block {
+                width: 295px;
+            }
+
+            #paint-canvas {
+                width: 295px;
+                height: 100%
+            }
+
+            .buttons {
+                height: 115px;
+
+            }
+        }
+
+        @media only screen and (max-width: 405px) {
+            .left-block {
+                width: 80px;
+            }
+
+            .right-block {
+                width: 285px;
+            }
+
+            #paint-canvas {
+                width: 285px;
+                height: 100%
+            }
+
+            .buttons {
+                height: 115px;
+
+            }
+        }
+        @media only screen and (max-width: 384px) {
+            main {
+                flex-direction: column;
+            }
+
+            .left-block {
+                width: 351px;
+                margin-left: 11px;
+                margin-right: 11px;
+            }
+
+            .right-block {
+                width: 351px;
+                margin-top: 1rem;
+                margin-left: 11px;
+                margin-right: 11px;
+            }
+
+            #paint-canvas {
+                width: 351px;
+                height: 306px;
+            }
+        }
+
+        @media only screen and (max-width: 375px) {
+            main {
+                flex-direction: column;
+            }
+
+            .left-block {
+                width: 351px;
+                margin-left: 11px;
+                margin-right: 11px;
+            }
+
+            .right-block {
+                width: 351px;
+                margin-top: 1rem;
+                margin-left: 11px;
+                margin-right: 11px;
+            }
+
+            #paint-canvas {
+                width: 351px;
+                height: 306px;
+            }
+        }
+
+        @media only screen and (max-width: 340px) {
+            main {
+                flex-direction: column;
+            }
+
+            .left-block {
+                width: 316px;
+                margin-left: 11px;
+                margin-right: 11px;
+            }
+
+            .right-block {
+                width: 316px;
+                margin-top: 1rem;
+                margin-left: 11px;
+                margin-right: 11px;
+            }
+
+            #paint-canvas {
+                width: 315px;
+                height: 306px;
+            }
+        }
+
+        @media only screen and (max-width: 330px) {
+            main {
+                flex-direction: column;
+            }
+
+            .left-block {
+                width: 300px;
+                margin-left: 20px;
+                margin-right: 16px;
+            }
+
+            .right-block {
+                width: 300px;
+                margin-top: 1rem;
+                margin-left: 20px;
+                margin-right: 16px;
+            }
+
+            #paint-canvas {
+                width: 299px;
+                height: 306px;
+            }
+        }
+
+        @media only screen and (max-width: 300px) {
+            main {
+                flex-direction: column;
+            }
+
+            .left-block {
+                width: 275px;
+                margin-left: 45px;
+                margin-right: 30px;
+            }
+
+            .right-block {
+                width: 275px;
+                margin-top: 1rem;
+                margin-left: 45px;
+                margin-right: 30px;
+            }
+
+            #paint-canvas {
+                width: 275px;
+                height: 306px;
+            }
+        }
+
+        @media only screen and (max-width: 285px) {
+            main {
+                flex-direction: column;
+            }
+
+            .left-block {
+                width: 260px;
+                margin-left: 60px;
+                margin-right: 30px;
+            }
+
+            .right-block {
+                width: 260px;
+                margin-top: 1rem;
+                margin-left: 60px;
+                margin-right: 30px;
+            }
+
+            #paint-canvas {
+                width: 256px;
+                height: 306px;
+            }
+        }
+
+        @media only screen and (max-width: 255px) {
+            main {
+                flex-direction: column;
+            }
+
+            .left-block {
+                width: 225px;
+                margin-left: 60px;
+                margin-right: 30px;
+            }
+
+            .right-block {
+                width: 225px;
+                margin-top: 1rem;
+                margin-left: 60px;
+                margin-right: 30px;
+            }
+
+            #paint-canvas {
+                width: 225px;
+                height: 306px;
+            }
+        }
+
+        @media only screen and (max-width: 255px) {
+            main {
+                flex-direction: column;
+            }
+
+            .left-block {
+                width: 207px;
+            }
+
+            .right-block {
+                width: 207px;
+            }
+
+            #paint-canvas {
+                width: 207px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel"
+        aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content col-12 model-margin">
+                <div class="modal-header">
+                    <h5 class="modal-title">Share</h5> <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"> <span aria-hidden="true" class="closeLetter">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    <div class="icon-container1 d-flex icons-justifying">
+                        <div class="smd">
+                            <a target="_blank" href="https://twitter.com/">
+                                <i class=" img-thumbnail fab fa-twitter"
+                                    style="color:#00d0ff; background-color: #f1f1f1;; font-size: 3rem; cursor: pointer;"></i>
+                                <p>Twitter</p>
+                            </a>
+                        </div>
+                        <div class="smd">
+                            <a target="_blank" href="https://www.facebook.com/">
+                                <i class="img-thumbnail fab fa-facebook"
+                                    style="color: #3b5998; background-color: #f1f1f1;; font-size: 3rem; cursor: pointer;"></i>
+                                <p>Facebook</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="icon-container2 d-flex icons-justifying">
+                        <div class="smd">
+                            <a target="_blank" href="https://web.whatsapp.com/">
+                                <i class="img-thumbnail fab fa-whatsapp"
+                                    style="color: #25D366; background-color: #f1f1f1;; font-size: 3rem; cursor: pointer;"></i>
+                                <p>Whatsapp</p>
+                            </a>
+                        </div>
+                        <div class="smd">
+                            <a target="_blank" href="https://www.gmail.com/">
+                                <i class="img-thumbnail fa fa-envelope"
+                                    style="color: #d33925; background-color: #f1f1f1;; font-size: 3rem; cursor: pointer;"></i>
+                                <p>Gmail</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"> <label style="font-weight: 600; display: flex;">Page Link <span
+                            class="message"></span></label><br />
+                    <div class="row"> <input class="col-10 ur" type="url" placeholder="https://www.google.com"
+                            id="myInput" aria-describedby="inputGroup-sizing-default" style="height: 34px;"> <button
+                            class="cpy" onclick="myFunction()"><i class="far fa-clone"></i></button> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
+    <main>
+        <div class="left-block">
+            <div class="colors">
+                <button type="button" value="#0000ff"></button>
+                <button type="button" value="#009fff"></button>
+                <button type="button" value="#0fffff"></button>
+                <button type="button" value="#bfffff"></button>
+                <button type="button" value="#000000"></button>
+                <button type="button" value="#333333"></button>
+                <button type="button" value="#666666"></button>
+                <button type="button" value="#999999"></button>
+                <button type="button" value="#ffcc66"></button>
+                <button type="button" value="#ffcc00"></button>
+                <button type="button" value="#ffff00"></button>
+                <button type="button" value="#ffff99"></button>
+                <button type="button" value="#003300"></button>
+                <button type="button" value="#555000"></button>
+                <button type="button" value="#00ff00"></button>
+                <button type="button" value="#99ff99"></button>
+                <button type="button" value="#f00000"></button>
+                <button type="button" value="#ff6600"></button>
+                <button type="button" value="#ff9933"></button>
+                <button type="button" value="#f5deb3"></button>
+                <button type="button" value="#330000"></button>
+                <button type="button" value="#663300"></button>
+                <button type="button" value="#cc6600"></button>
+                <button type="button" value="#deb887"></button>
+                <button type="button" value="#aa0fff"></button>
+                <button type="button" value="#cc66cc"></button>
+                <button type="button" value="#ff66ff"></button>
+                <button type="button" value="#ff99ff"></button>
+                <button type="button" value="#e8c4e8"></button>
+                <button type="button" value="#ffffff"></button>
+            </div>
+            <div class="brushes">
+                <button type="button" value="1"></button>
+                <button type="button" value="2"></button>
+            </div>
+            <div class="tools">
+                <div id="tool-pencil" class="pencil" title="pencil"><i class="fa fas fa-pencil"></i> </div>
+                <div id="tool-eraser" class="eraser" title="eraser"><i class="fa fas fa-eraser"></i></div>
+            </div>
+            <div class="buttons">
+                <button id="clear" type="button">Clear</button>
+                <button id="save" type="button">Save</button>
+                <button type="button" id="share" data-toggle="modal" data-target="#shareModal"> Share</i></button>
+            </div>
+        </div>
+        <div class="right-block">
+            <canvas id="paint-canvas" width="350" height="405"></canvas>
+        </div>
+    </main>
+
+    <script>
+        setTimeout (function () {
+
+            // Definitions
+            var canvas = document.getElementById("paint-canvas");
+            var context = canvas.getContext("2d");
+            var boundings = canvas.getBoundingClientRect();
+
+
+            var mouseX = 0;
+            var mouseY = 0;
+            context.strokeStyle = 'black';
+            context.lineWidth = 1;
+
+            var isDrawing = false;
+            var bErasing = false;
+
+            // Handle Colors
+            var colors = document.getElementsByClassName('colors')[0];
+
+            colors.addEventListener('click', function (event) {
+                context.strokeStyle = event.target.value || 'black';
+                bErasing = false;
+            });
+
+            // Handle Brushes
+            var brushes = document.getElementsByClassName('brushes')[0];
+
+            brushes.addEventListener('click', function (event) {
+                context.lineWidth = event.target.value || 1;
+                bErasing = false;
+            });
+
+            var tools = document.getElementsByClassName('pencil')[0];
+
+            tools.addEventListener('click', function (event) {
+
+                context.lineWidth = event.target.value || 0.1;
+                bErasing = false;
+            });
+
+            var eraser = document.getElementsByClassName('eraser')[0];
+            eraser.addEventListener('click', function (event) {
+                context.globalCompositeOperation = "destination-out";
+                context.lineWidth = event.target.value || 5;
+                bErasing = true;
+            });
+            canvas.addEventListener('mousedown', function (event) {
+                setMouseCoordinates(event);
+
+                isDrawing = true;
+
+                // Start Drawing
+                context.beginPath();
+                context.moveTo(mouseX, mouseY);
+
+            });
+
+            canvas.addEventListener('mousemove', function (event) {
+                setMouseCoordinates(event);
+
+                if (isDrawing) {
+                    context.lineTo(mouseX, mouseY);
+                    context.stroke();
+                }
+                if (bErasing == true) {
+                    context.globalCompositeOperation = "destination-out";
+                } else {
+                    context.globalCompositeOperation = "source-over";
+                }
+            });
+
+            canvas.addEventListener('mouseup', function (event) {
+                setMouseCoordinates(event);
+                isDrawing = false;
+            });
+
+            function setMouseCoordinates(event) {
+                mouseX = event.clientX - boundings.left;
+                mouseY = event.clientY - boundings.top;
+            }
+
+            var clearButton = document.getElementById('clear');
+
+            clearButton.addEventListener('click', function () {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+            });
+            var saveButton = document.getElementById('save');
+            saveButton.addEventListener('click', function () {
+                var imageName = prompt('Please enter image name');
+                var canvasDataURL = canvas.toDataURL();
+                var a = document.createElement('a');
+                a.href = canvasDataURL;
+                a.download = imageName || 'drawing';
+                a.click();
+            });
+        },1000);
+
+        setTimeout (function () {
+            var canvas = document.getElementById('paint-canvas');
+            var context = canvas.getContext('2d');
+
+            if (window.matchMedia('screen and (max-width: 2560px)').matches) {
+                var mx = window.innerWidth - canvas.width * 3.9;
+                var my = window.innerHeight - canvas.height * 1.9;
+            }
+            if (window.matchMedia('screen and (max-width: 1440px)').matches) {
+                var mx = window.innerWidth - canvas.width * 2.3;
+                var my = window.innerHeight - canvas.height * 1.3;
+            }
+            if (window.matchMedia('screen and (max-width: 1084px)').matches) {
+                var mx = window.innerWidth - canvas.width * 1.80;
+                var my = window.innerHeight - canvas.height * 1.59;
+            }
+            if (window.matchMedia('screen and (max-width: 1024px)').matches) {
+                var mx = window.innerWidth - canvas.width * 1.74;
+                var my = window.innerHeight - canvas.height * 1.2;
+
+            }
+            if (window.matchMedia('screen and (max-width: 768px)').matches) {
+                var mx = window.innerWidth - canvas.width * 1.38;
+                var my = window.innerHeight - canvas.height * 1.2;
+
+            }
+            if (window.matchMedia('screen and (max-width: 425px)').matches) {
+                var mx = window.innerWidth - canvas.width * 0.95;
+                var my = window.innerHeight - canvas.height * 1.2;
+
+            }
+            if (window.matchMedia('screen and (max-width: 375px)').matches) {
+                var mx = window.innerWidth - canvas.width * 1.05;
+                var my = window.innerHeight - canvas.height * 0.8;
+
+            }
+            if (window.matchMedia('screen and (max-width: 320px)').matches) {
+                var mx = window.innerWidth - canvas.width * 0.98;
+                var my = window.innerHeight - canvas.height * 0.7;
+
+            }
+            if (window.matchMedia('screen and (max-width: 200px)').matches) {
+                var mx = window.innerWidth - canvas.width * 0.98;
+                var my = window.innerHeight - canvas.height * 0.95;
+
+            }
+
+            var drawer = {
+                isDrawing: false,
+                touchstart: function (coors) {
+                    context.beginPath();
+                    context.moveTo(coors.x, coors.y);
+                    this.isDrawing = true;
+                },
+                touchmove: function (coors) {
+                    if (this.isDrawing) {
+                        context.lineTo(coors.x, coors.y);
+                        context.stroke();
+                    }
+                },
+                touchend: function (coors) {
+                    if (this.isDrawing) {
+                        this.touchmove(coors);
+                        this.isDrawing = false;
+                    }
+                }
+            };
+
+            function draw(event) {
+                var coors = {
+                    x: event.targetTouches[0].clientX - mx,
+                    y: event.targetTouches[0].clientY - my
+                };
+                console.log(coors.x);
+                console.log(coors.y);
+                drawer[event.type](coors);
+            }
+            canvas.addEventListener('touchstart', draw, false);
+            canvas.addEventListener('touchmove', draw, false);
+            canvas.addEventListener('touchend', draw, false);
+        },1000);
+
+        document.getElementById('tool-pencil').onclick = function () {
+            document.getElementById('paint-canvas').style.cursor = "url(pencil.cur),auto";
+        }
+        document.getElementById('tool-eraser').onclick = function () {
+            document.getElementById('paint-canvas').style.cursor = "url(eraser.cur),auto";
+
+        }
+        document.querySelector('.brushes').onclick = function () {
+            document.getElementById('paint-canvas').style.cursor = "url(pencil.cur),auto";
+
+        }
+        document.querySelector('.colors').onclick = function () {
+            document.getElementById('paint-canvas').style.cursor = "url(pencil.cur),auto";
+
+        }
+
+        function myFunction() {
+            alert("copied");
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
