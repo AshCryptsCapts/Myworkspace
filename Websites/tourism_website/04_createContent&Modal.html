@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <title>Create Content & modal</title>
+    <style>
+        body {
+          background-color: #ede6db;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+          background-position: bottom;
+          background-repeat: no-repeat;
+          min-height: 100vh;
+          width: 100%;
+          scroll-behavior: smooth;
+      }
+      
+      .bg-dark {
+            background-color: #1d5c63 !important;
+      }
+
+        .initialCards {
+          display: flex;
+          justify-content: space-between;
+      }
+
+        .card {
+          margin-right: 6px;
+          padding: 0px;
+      }
+
+        .card-header {
+          text-align: center;
+            background-color: #1d5c63;
+          font-weight: 500;
+      }
+
+        #imageGallary {
+          margin-right: 20px;
+      }
+      
+        .clickHereButtons {
+          position: absolute;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          bottom: 1rem;
+      }
+
+        .Buttons {
+          background-color: #0000008f;
+          border-radius: 0.3rem;
+          border: 1px solid #bbbbbb;
+          color: white;
+            cursor: pointer;
+      }
+
+      .Buttons:hover {
+            background-color: #417d7a;
+          color: white;
+      }
+      
+        .card-img-top {
+          object-fit: cover;
+            position: relative;
+          width: 290px;
+          height: 200px;
+          object-fit: cover;
+      }
+
+      .content {
+          border-radius: 3rem;
+            background-color: #417d7a;
+            color: white;
+          margin: 3rem;
+          margin-bottom: 0%;
+      }
+
+        .contentBody {
+          margin: 1rem;
+          padding: 1rem;
+      }
+
+        .imageContentRow {
+          margin-right: 0;
+          margin-left: 0;
+          justify-content: center;
+      }
+
+        .card-text {
+          text-align: justify;
+      }
+      
+      p {
+          margin-top: 0;
+          margin-bottom: 1rem;
+          text-align: justify;
+      }
+
+      .bold{
+        font-weight: bold;
+      }
+
+      @media only screen and (max-width: 290px) {
+            .card-img-top {
+              width: 100%;
+              height: 100%;
+        }
+      }
+      
+      @media only screen and (max-width: 300px) {
+          h1 {
+              font-size: 1.5rem;
+          }
+      }
+      
+      @media only screen and (max-width: 350px) {
+            .card {
+              margin-right: 0px;
+          }
+        }
+      
+      @media only screen and (max-width: 425px) {
+            #imageGallary {
+              margin-right: 0px;
+          }
+        }
+      
+      @media only screen and (max-width: 767px) {
+          .initialCards {
+           justify-content: center;
+          }
+        }
+
+      @media only screen and (max-width: 991px) {
+          .initialCards {
+           justify-content: space-evenly;
+          }
+        }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: fixed; z-index: +1; width: 100%">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="img/Skyget_logo.svg" style="width: 100px;"></a>
+        </div>
+      </nav>
+
+    <marquee>
+        <h1 style="
+          color: #1a3c40;
+          /* color:linear-gradient(112deg, rgba(26,60,64,1) 17%, rgba(29,92,99,1) 52%, rgba(65,125,122,1) 100%); */
+          margin-top: 5rem;
+          font-family: 'Alegreya', serif;
+          text-shadow: 4px 4px 4px #b9b9b9;
+        ">
+            Welcome to the Tourism World
+        </h1>
+    </marquee>
+
+     <div class="container" id="places">
+        <h1 style="
+          text-align: center;
+          margin-top: 46px;
+          font-family: auto;
+          color: #1a3c40;
+        ">
+            Places
+        </h1>
+       <div class="row initialCards">
+            <div class="card text-white col-md-12 mt-3" style="max-width: 18rem; cursor: pointer" id="initialCard1">
+                <div class="card-header">Hyderabad</div>
+          <div class="card-body">
+                    <img src="img/hydimg.jpg" style="width: 100%; height: 100%; object-fit: cover" title="Hyderabad" />
+          </div>
+        </div>
+
+            <div class="card text-white col-md-12 mt-3" style="max-width: 18rem; cursor: pointer" id="initialCard2">
+          <div class="card-header">Delhi</div>
+          <div class="card-body">
+                    <img src="img/delhiimg.jpg" style="width: 100%; height: 100%; object-fit: cover" title="Delhi" />
+          </div>
+        </div>
+
+            <div class="card text-white col-md-12 mt-3" style="max-width: 18rem; cursor: pointer" id="initialCard3">
+          <div class="card-header">Jaipur</div>
+          <div class="card-body">
+                    <img src="img/jaipurimg.jpg" style="width: 100%; height: 100%; object-fit: cover" title="Jaipur" />
+          </div>
+        </div>
+       </div>
+     </div>
+    
+    <div id="hydGalary" style="margin-top: 28px; display: none">
+        <div>
+            <h1 style="
+            text-align: center;
+            margin-top: 46px;
+            font-family: auto;
+            color: #1a3c40;
+          ">
+                Hyderabad
+            </h1>
+          </div>
+        <div class="row d-flex justify-content-center" style="margin-right: 0%; margin-left: 0%">
+            <div class="card col-md-0 mt-3" style="width: 18rem; cursor: pointer" title="Charminar" id="imageGallary">
+                <img src="img/hydimg1.jpg" class="card-img-top" alt="..." />
+                <div class="clickHereButtons">
+                    <button class="Buttons" id="charminarImg">Click here</button>
+          </div>
+        </div>
+            <div class="card col-md-0 mt-3" style="width: 18rem; cursor: pointer" title="Golkonda" id="imageGallary">
+                <img src="img/hydimg2.jpg" class="card-img-top" alt="..." />
+                <div class="clickHereButtons">
+                    <button class="Buttons" id="golkondaImg">Click here</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="delhiGalary" style="margin-top: 28px; display: none">
+        <div>
+            <h1 style="
+            text-align: center;
+            margin-top: 46px;
+            font-family: auto;
+            color: #1a3c40;
+          ">
+                Delhi
+            </h1>
+      </div>
+        <div class="row d-flex justify-content-center" style="margin-right: 0%; margin-left: 0%">
+            <div class="card col-md-0 mt-3" style="width: 18rem; cursor: pointer" title="Qutub Minar" id="imageGallary">
+                <img src="img/delhiimg1.jpg" class="card-img-top" alt="..." />
+                <div class="clickHereButtons">
+                    <button class="Buttons" id="qutubImg">Click here</button>
+      </div>
+    </div>
+            <div class="card col-md-0 mt-3" style="width: 18rem; cursor: pointer" title="Red Fort" id="imageGallary">
+                <img src="img/delhiimg2.jpg" class="card-img-top" alt="..." />
+                <div class="clickHereButtons">
+                    <button class="Buttons" id="redfortImg">Click here</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="jaipurGalary" style="margin-top: 28px; display: none">
+        <div>
+            <h1 style="
+            text-align: center;
+            margin-top: 46px;
+            font-family: auto;
+            color: #1a3c40;
+          ">
+                Jaipur
+            </h1>
+  </div>
+        <div class="row d-flex justify-content-center" style="margin-right: 0%; margin-left: 0%">
+            <div class="card col-md-0 mt-3" style="width: 18rem; cursor: pointer" title="Amer Fort" id="imageGallary">
+                <img src="img/jaipurimg1.jpg" class="card-img-top" alt="..." />
+                <div class="clickHereButtons">
+                    <button class="Buttons" id="amerImg">Click here</button>
+  </div>
+</div>
+            <div class="card col-md-0 mt-3" style="width: 18rem; cursor: pointer" title="City Palace" id="imageGallary">
+                <img src="img/jaipurimg2.jpg" class="card-img-top" alt="..." />
+                <div class="clickHereButtons">
+                    <button class="Buttons" id="citypalaceImg">Click here</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row imageContentRow">
+        <div id="charminarContent" style="display: none" class="col-md-8 content content_all">
+    <div class="contentBody">
+                <div class="col-md-12">
+                    <h1>Charminar</h1>
+        </div>
+                <div class="col-md-12">
+                    <p>
+                        The Charminar constructed in 1591, is a monument located in
+                        <span class="bold">Hyderabad, Telangana, India.</span> The
+                        landmark has become known globally as a symbol of Hyderabad and is
+                        listed among the most recognised structures in India. It has also
+                        been officially incorporated as the Emblem of Telangana for the
+                        state of Telangana. The Charminar's long history includes the
+                        existence of a mosque on its top floor for more than 400
+                        years.While both historically and religiously significant, it is
+                        also known for its popular and busy local markets surrounding the
+                        structure, and has become one of the most frequented tourist
+                        attractions in Hyderabad. Charminar is also a site of numerous
+                        festival celebrations, such as Eid-ul-adha and Eid al-Fitr. The
+                        Charminar is situated on the east bank of Musi river. To the west
+                        lies the Laad Bazaar, and to the southwest lies the richly
+                        ornamented granite Makkah Masjid. It is listed as an
+                        archaeological and architectural treasure on the official "List of
+                        Monuments" prepared by the Archaeological Survey of India.
+                    </p>
+                    <div>
+                        <button type="button" data-toggle="modal" data-target="#telanganaModal" style="
+                  background-color: #1a3c40;
+                  color: white;
+                  border: none;
+                  border-radius: 1rem;
+                ">
+                            <span style="padding: 3px; cursor: pointer">For more details..</span>
+                        </button>
+    </div>
+  </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="row imageContentRow">
+        <div id="golkondaContent" style="display: none" class="col-md-8 content content_all">
+      <div class="contentBody">
+                <div class="col-md-12">
+                    <h1>Golkonda Fort</h1>
+        </div>
+                <div class="col-md-12">
+                    <p>
+                        Golconda Fort, located in
+                        <span class="bold">Hyderabad, Telangana, India.</span> Because of
+                        the vicinity of diamond mines, especially Kollur Mine, Golconda
+                        flourished as a trade centre of large diamonds, known as the
+                        Golconda Diamonds. The region has produced some of the world's
+                        most famous diamonds, including the colourless Koh-i-Noor (now
+                        owned by the United Kingdom), the blue Hope (United States), the
+                        pink Daria-i-Noor (Iran), the white Regent (France), the Dresden
+                        Green (Germany), and the colourless Orlov (Russia), Nizam and
+                        Jacob (India), as well as the now lost diamonds Florentine Yellow,
+                        Akbar Shah and Great Mogul. The complex was put by UNESCO on its
+                        "tentative list" to become a World Heritage Site in 2014, with
+                        others in the region, under the name Monuments and Forts of the
+                        Deccan Sultanate (despite there being a number of different
+                        sultanates).
+                    </p>
+                    <div>
+                        <button type="button" data-toggle="modal" data-target="#telanganaModal" style="
+                  background-color: #1a3c40;
+                  color: white;
+                  border: none;
+                  border-radius: 1rem;
+                ">
+                            <span style="padding: 3px; cursor: pointer">For more details..</span>
+                        </button>
+      </div>
+    </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="modal fade" id="telanganaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        Telanagna Tourism
+                    </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                    <div>
+                        <p class="card-text">
+                            3-5-891, Tourism House Himayatnagar, Hyderabad - 500 029,
+                            Telangana, India.<br />
+                            Toll Free: 1800-425-46464 <br />
+                            <a href="https://tourism.telangana.gov.in/">tourism.telangana.gov</a>
+                        </p>
+         </div>
+        </div>
+        <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="row imageContentRow">
+        <div id="qutubContent" style="display: none" class="col-md-8 content content_all">
+      <div class="contentBody">
+                <div class="col-md-12">
+                    <h1>Qutub Minar</h1>
+        </div>
+                <div class="col-md-12">
+                    <p>
+                        Qutub Minar is a minaret or a victory tower located in the Qutub
+                        complex, a UNESCO World Heritage Site in Delhi's Mehrauli area.
+                        With a height of 72.5 metres (238 ft), Qutub Minar is the
+                        <span class="bold">second tallest</span> monument of
+                        <span class="bold">Delhi. </span>The surrounding Qutub complex has
+                        lush green lawns which are popular picnic spot.The tower has five
+                        distinct storeys, each marked by a projecting balcony and tapers
+                        from a 15 m diameter at the base to just 2.5 m at the top. The
+                        first three storeys are made of red sandstone; the fourth and
+                        fifth storeys are of marble and sandstone. At the foot of the
+                        tower is the Quwwat-ul-Islam Mosque, the first mosque to be built
+                        in India. An inscription over its eastern gate provocatively
+                        informs that it was built with material obtained from demolishing
+                        '27 Hindu temples'. A 7 m-high iron pillar stands in the courtyard
+                        of the mosque. It is said that if you can encircle it with your
+                        hands while standing with your back to it your wish will be
+                        fulfilled.
+                    </p>
+                    <div>
+                        <button type="button" data-toggle="modal" data-target="#delhiModal" style="
+                  background-color: #1a3c40;
+                  color: white;
+                  border: none;
+                  border-radius: 1rem;
+                ">
+                            <span style="padding: 3px; cursor: pointer">For more details..</span>
+                        </button>
+      </div>
+    </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="row imageContentRow">
+        <div id="redfortContent" style="display: none" class="col-md-8 content content_all">
+        <div class="contentBody">
+                <div class="col-md-12">
+                    <h1>Red Fort</h1>
+          </div>
+                <div class="col-md-12">
+                    <p>
+                        The Red Fort is a historical fort in the
+                        <span class="bold">Delhi </span>area, on the banks of Yamuna. Shah
+                        Jahan constructed it in 1639 as a result of a capital shift from
+                        Agra to Delhi. Built from red sandstone, it is home to several
+                        museums. Every year, the Indian Prime Minister unfurls the
+                        national flag here on the Independence Day.The main gate, Lahore
+                        Gate, is one of the emotional and symbolic focal points of the
+                        modern Indian nation and attracts a major crowd on each
+                        Independence Day.The vaulted arcade of Chatta Chowk, a bazaar
+                        selling tourist trinkets, leads into the huge fort compound.
+                        Inside is a veritable treasure trove of buildings, including the
+                        Drum House, the Hall of Public Audiences, the white marble Hall of
+                        Private Audiences, the Pearl Mosque, Royal Baths and Palace of
+                        Color.An evening sound and light show re-creates events in India's
+                        history connected with the fort.
+                    </p>
+                    <div>
+                        <button type="button" data-toggle="modal" data-target="#delhiModal" style="
+                  background-color: #1a3c40;
+                  color: white;
+                  border: none;
+                  border-radius: 1rem;
+                ">
+                            <span style="padding: 3px; cursor: pointer">For more details..</span>
+                        </button>
+        </div>
+      </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="modal fade" id="delhiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        Delhi Tourism
+                    </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                    <div>
+                        <p class="card-text">
+                            18-A, D.D.A.SCO Complex, Defence Colony, New Delhi - 24, Ph:
+                            91-11-24647005<br />
+                            <a href="https://delhitourism.gov.in/">delhitourism.gov.in</a>
+                        </p>
+                    </div>
+        </div>
+        <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="row imageContentRow">
+        <div id="amerContent" style="display: none" class="col-md-8 content content_all">
+      <div class="contentBody">
+                <div class="col-md-12">
+                    <h1>Amer Fort</h1>
+        </div>
+                <div class="col-md-12">
+                    <p>
+                        Cradled on the top of a hill near
+                        <span class="bold">Jaipur</span> lies the Amer Fort, one of the
+                        most magnificent palaces in India. Also commonly known as the
+                        Amber Fort, this majestic building with its maze-like passages and
+                        serpentine staircases is an architectural masterpiece and with
+                        significant importance in Indian history. Only 11 kilometres away
+                        from Jaipur, Amer Fort is clad in pink and yellow sandstone and is
+                        a part of an extensive complex. Built by one of the most trusted
+                        generals of Akbar, Maharaja Man Singh I in the year 1592, Amer
+                        Fort served as the main residence of the Rajput Rulers.The Amer
+                        Fort through its large ramparts, several gateways and paved paths
+                        overlooks the Maotha Lake in the town of Amer, which used to serve
+                        as the capital of the erstwhile Jaipur princely state.
+                    </p>
+                    <div>
+                        <button type="button" data-toggle="modal" data-target="#jaipurModal" style="
+                  background-color: #1a3c40;
+                  color: white;
+                  border: none;
+                  border-radius: 1rem;
+                ">
+                            <span style="padding: 3px; cursor: pointer">For more details..</span>
+                        </button>
+      </div>
+    </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="row imageContentRow">
+        <div id="citypalaceContent" style="display: none" class="col-md-8 content content_all">
+        <div class="contentBody">
+                <div class="col-md-12">
+                    <h1>City Palace</h1>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        The magnificent City Palace in <span class="bold">Jaipur</span> is
+                        one of the most famous tourist attractions located in the old part
+                        of the city. Built by Maharaja Sawai Jai Singh during the years
+                        1729 to 1732, the vast complex of the palace occupied one-seventh
+                        of the walled city. In fact, it was once the seat of the Maharaja
+                        of Jaipur. The palace is divided into a series of courtyards,
+                        buildings and gardens including the Chandra Mahal and the Mubarak
+                        Mahal. The museum showcases various unique handcrafted products
+                        and other things that belong to the royal heritage of the City
+                        Palace.The facade itself is designed with acute and detailed
+                        handiwork and showcases a blend of Mughal and Rajput architecture
+                        styles. The outer wall was built by Jai Singh II, however, the
+                        palace itself has been subjected to various changes over the
+                        course of time, with some of them even belonging to the early 20th
+                        century.
+                    </p>
+                    <div>
+                        <button type="button" data-toggle="modal" data-target="#jaipurModal" style="
+                  background-color: #1a3c40;
+                  color: white;
+                  border: none;
+                  border-radius: 1rem;
+                ">
+                            <span style="padding: 3px; cursor: pointer">For more details..</span>
+                        </button>
+          </div>
+        </div>
+      </div>
+        </div>
+    </div>
+  
+    <div class="modal fade" id="jaipurModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        Jaipur Tourism
+                    </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                    <div>
+                        <p class="card-text">
+                            State Hotel, Khasa Kothi, Jaipur, 302 001 Rajasthan. Tel:
+                            0141-2372200,<br />
+                            <a href="https://www.tourism.rajasthan.gov.in/">tourism.rajasthan.gov.in</a>
+                        </p>
+                    </div>
+        </div>
+        <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <hr />
+    <footer class="page-footer font-small blue">
+      <div class="footer-copyright text-center py-3">
+        Copyright© Skyget 2022
+      </div>
+    </footer>
+<script>
+        //var cardClick1 = document.getElementById("initialCard1");
+        //var cardClick2 = document.getElementById("initialCard2");
+        //var cardClick3 = document.getElementById("initialCard3");
+
+    var getGalary1 = document.getElementById("hydGalary");
+    var getGalary2 = document.getElementById("delhiGalary");
+    var getGalary3 = document.getElementById("jaipurGalary");
+
+        //var getCharminarimg = document.getElementById("charminarImg");
+        // var getGolkondaimg = document.getElementById("golkondaImg");
+        // var getQutubimg = document.getElementById("qutubImg");
+        // var getRedFortimg = document.getElementById("redfortImg");
+        // var getAmerimg = document.getElementById("amerImg");
+        // var getCityPalaceimg = document.getElementById("citypalaceImg");
+
+    var getCharminarContent = document.getElementById("charminarContent");
+    var getGolkondaContent = document.getElementById("golkondaContent");
+    var getQutubContent = document.getElementById("qutubContent");
+    var getRedFortContent = document.getElementById("redfortContent");
+    var getAmerContent = document.getElementById("amerContent");
+    var getCityPalaceContent = document.getElementById("citypalaceContent");
+    
+        document.getElementById("initialCard1").onclick = function () {
+            getGalary1.style.display = "block";
+            getGalary2.style.display = "none";
+            getGalary3.style.display = "none";
+            getQutubContent.style.display = "none";
+            getRedFortContent.style.display = "none";
+            getAmerContent.style.display = "none";
+            getCityPalaceContent.style.display = "none";
+            //document.querySelectorAll(".content_all").style.display = "none";
+        };
+
+        document.getElementById("initialCard2").onclick = function () {
+            getGalary2.style.display = "block";
+            getGalary1.style.display = "none";
+            getGalary3.style.display = "none";
+            getGolkondaContent.style.display = "none";
+            getCharminarContent.style.display = "none";
+            getAmerContent.style.display = "none";
+            getCityPalaceContent.style.display = "none";
+
+            // document.querySelectorAll(".content_all").style.display= "none";
+        };
+
+        document.getElementById("initialCard3").onclick = function () {
+            getGalary3.style.display = "block";
+            getGalary1.style.display = "none";
+            getGalary2.style.display = "none";
+            getGolkondaContent.style.display = "none";
+            getCharminarContent.style.display = "none";
+            getQutubContent.style.display = "none";
+            getRedFortContent.style.display = "none";
+            //document.querySelectorAll(".content_all").style.display= "none";
+        };
+
+        document.getElementById("charminarImg").onclick = function () {
+            getCharminarContent.style.display = "block";
+            getGolkondaContent.style.display = "none";
+            getQutubContent.style.display = "none";
+            getRedFortContent.style.display = "none";
+            getAmerContent.style.display = "none";
+            getCityPalaceContent.style.display = "none";
+        };
+
+        document.getElementById("golkondaImg").onclick = function () {
+            getGolkondaContent.style.display = "block";
+            getCharminarContent.style.display = "none";
+            getQutubContent.style.display = "none";
+            getRedFortContent.style.display = "none";
+            getAmerContent.style.display = "none";
+            getCityPalaceContent.style.display = "none";
+        };
+
+        document.getElementById("qutubImg").onclick = function () {
+            getQutubContent.style.display = "block";
+            getCharminarContent.style.display = "none";
+            getGolkondaContent.style.display = "none";
+            getRedFortContent.style.display = "none";
+            getAmerContent.style.display = "none";
+            getCityPalaceContent.style.display = "none";
+        };
+
+        document.getElementById("redfortImg").onclick = function () {
+            getRedFortContent.style.display = "block";
+            getCharminarContent.style.display = "none";
+            getGolkondaContent.style.display = "none";
+            getQutubContent.style.display = "none";
+            getAmerContent.style.display = "none";
+            getCityPalaceContent.style.display = "none";
+        };
+
+        document.getElementById("amerImg").onclick = function () {
+            getAmerContent.style.display = "block";
+            getCharminarContent.style.display = "none";
+            getGolkondaContent.style.display = "none";
+            getQutubContent.style.display = "none";
+            getRedFortContent.style.display = "none";
+            getCityPalaceContent.style.display = "none";
+        };
+
+        document.getElementById("citypalaceImg").onclick = function () {
+            getCityPalaceContent.style.display = "block";
+            getCharminarContent.style.display = "none";
+            getGolkondaContent.style.display = "none";
+            getQutubContent.style.display = "none";
+            getRedFortContent.style.display = "none";
+            getAmerContent.style.display = "none";
+        };
+
+    getCityPalaceimg.onclick = function(){
+      getCityPalaceContent.style.display ="block";
+      getCharminarContent.style.display ="none";
+      getGolkondaContent.style.display ="none";
+      getQutubContent.style.display ="none";
+      getRedFortContent.style.display ="none";
+      getAmerContent.style.display ="none";
+    }
+
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

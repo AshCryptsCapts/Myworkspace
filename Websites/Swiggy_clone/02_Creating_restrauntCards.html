@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <title>
+        HAPPY EATS
+    </title>
+    <style>
+
+body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 100vh;
+}
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.navBarItems{
+margin: 3px;
+}
+
+.bg-light {
+    background-color: #e1e1e1!important;
+}
+
+.mainColumnTop{
+    margin-top: 4rem;
+}
+
+.equal{
+display: flex;
+justify-content: center;
+display: flex;
+justify-content: space-around;
+}
+
+.fixed{
+position: fixed;
+ z-index: 9;
+  width: 100%;
+ }
+        
+ .card-img-top {
+    height: 15rem;
+    object-fit: cover;
+}
+.card-body{
+    margin: 1rem;
+    padding:0%;
+}
+
+.brobro{
+    border: none;
+    background-color: #e1e1e1;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.brobro:hover{
+    border: 1px solid #dddddd;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed">
+     <div class="navBarItems"><a class="navbar-brand" href="#"><strong>HAPPY EATS</strong></a></div>
+    </nav>
+    
+    <div class="container-fluid" id="homePage">
+        <div class="row" style="display:flex; align-items: center;" id="allRows">
+            <div class="col-md-12 mainColumnTop" >
+                <div class="row equal"  >
+                    <div class="col-md-3 col-sm-10 col-xs-8">
+                        <div class="card brobro" id="bawarchiCard">
+                            <img src="/KidsCoding/coding_kids/images/swiggyimg/bawarchi.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h3>Bawarchi</h3>
+                                <p style="margin-bottom: 0%;">North Indian, Chinese.<br>
+                                    RTC X roads, Hyderabad</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-10 col-xs-8">
+                        <div class="card brobro" id="cafeBaharCard">
+                            <img src="/KidsCoding/coding_kids/images/swiggyimg/cafeBahar.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h3>cafe Bahar</h3>
+                                <p style="margin-bottom: 0%;">Mughlai,Biryani.<br>
+                                    Basheer Bagh, Hyderabad</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-3 col-sm-10 col-xs-8">
+                        <div class="card brobro" id="desiKitchenCard">
+                            <img src="/KidsCoding/coding_kids/images/swiggyimg/desiKitchen.jpg" class="card-img-top" alt="...">
+                         <div class="card-body">
+                            <h3>Desi Kitchen</h3>
+                            <p style="margin-bottom: 0%;">North Indian, Chinese.<br>
+                                Panjagutta, Hyderabad</p>
+                          </div>
+                        </div>
+                    </div>
+                        
+                    <div class="col-md-3 col-sm-10 col-xs-8">
+                            <div class="card brobro" id="anTeRaCard">
+                                <img src="/KidsCoding/coding_kids/images/swiggyimg/anTeRa.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <div><h3>Te An Ra Kitchen</h3></div>
+                                    <div><p style="margin-bottom: 0%;">South Indian,Chinese.<br>
+                                        Mallapur, Secunderabad</p></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>   
+            <div class="col-md-12">
+                <div class="row equal">
+                        <div class="col-md-3 col-sm-10 col-xs-8">
+                            <div class="card brobro" id="starHotelCard">
+                                <img src="/KidsCoding/coding_kids/images/swiggyimg/starHotel.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h3>Star hotel</h3>
+                                    <p style="margin-bottom: 0%;">North Indian, Chinese.<br>
+                                        Musheerabad, Hyderabad</p>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-10 col-xs-8">
+                            <div class="card brobro" id="telanganaSwagCard">
+                                <img src="/KidsCoding/coding_kids/images/swiggyimg/telanganaSwag.jpg" class="card-img-top" alt="..."></a>
+                                <div class="card-body">
+                                    <h3>Telangana Swag</h3>Andhra, BBQ.<br>
+                                    Jubilee Hills, Hyderabad
+                                        <p style="margin-bottom: 0%;"></p>                      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-10 col-xs-8">
+                            <div class="card brobro" id="paradiseCard">
+                                <img src="/KidsCoding/coding_kids/images/swiggyimg/paradise.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h3>Paradise</h3>
+                                    <p style="margin-bottom: 0%;">Biryani, Kebab.<br>
+                                        Charminar, Hyderabad.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-10 col-xs-8">
+                            <div class="card brobro" id="punjabiAffairsCard">
+                                <img src="/KidsCoding/coding_kids/images/swiggyimg/punjabiAffairs.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h3>Punjabi Affairs</h3>
+                                  <p style="margin-bottom: 0%;">North Indian, Biryani.<br>
+                                    Abids, Hyderabad.</p>
+                                    </div>
+                                </div>
+                        </div>
+                </div>       
+            </div><br>
+        </div>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
