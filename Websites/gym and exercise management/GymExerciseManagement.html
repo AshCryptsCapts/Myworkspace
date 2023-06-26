@@ -1,0 +1,769 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Fitzo</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+		</script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-size: 1rem;
+		}
+
+		html {
+			font: normal 16px sans-serif;
+			color: #555;
+		}
+
+		p {
+			font-family: "PT Sans";
+			color: #48005a;
+		}
+
+		header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1rem 2rem;
+			position: absolute;
+			width: 100%;
+			z-index: 1;
+			animation: 1s fadein 0.5s forwards;
+			opacity: 0;
+			background-color: rgba(41, 0, 37, 0.4);
+		}
+
+		@keyframes fadein {
+			100% {
+				opacity: 1;
+			}
+		}
+
+		nav {
+			list-style: none;
+			display: flex;
+			padding-top: 1rem;
+			flex-wrap: wrap;
+		}
+
+		nav li {
+			margin: 0 1rem;
+		}
+
+		.menu-mobile {
+			display: none;
+		}
+
+
+		a {
+			text-decoration: none;
+			opacity: 0.7;
+			color: white;
+			font-size: 1.2rem;
+			text-shadow: 1px 1px black;
+		}
+
+		a:hover {
+			opacity: 1;
+		}
+
+		section {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 2rem 2rem;
+		}
+
+		section:not(.hero):nth-child(even) {
+			background-color: #f5f5f5;
+		}
+
+		a.btn {
+			border-radius: 5px;
+			background-color: white;
+			margin-top: .5rem;
+			padding: 1rem 2rem;
+			display: inline-block;
+			text-transform: uppercase;
+			opacity: 1;
+			color: black;
+		}
+
+		.hero {
+			min-height: 100vh;
+			position: relative;
+			justify-content: center;
+			background-image: url(Gymimgs/header.jpg);
+			width: 100%;
+			top: 0px;
+			background-size: cover;
+			background-position: 50% 50%;
+		}
+
+		#about {
+			width: 100%
+		}
+
+		#about .row {
+			margin: auto;
+			padding-top: 0;
+			padding-top: 0rem;
+			padding-bottom: 3rem;
+			padding-left: 3rem;
+			padding-right: 3rem;
+			display: flex;
+		}
+
+		.left-most,
+		.center,
+		.right-most {
+			background-color: #e5e5e5;
+		}
+
+		.left-most {
+			border-top-left-radius: 20px;
+			border-bottom-left-radius: 20px;
+		}
+
+		.right-most {
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+		}
+
+		#about .col-lg-3 {
+			padding: 1.6% 1.2%;
+		}
+
+		.left-most,
+		.center {
+			border-right: 1px solid blueviolet;
+		}
+
+		.diet-left1,
+		.diet-right1 {
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+		}
+
+		h4 {
+			font-size: 1rem;
+			color: #490081;
+
+		}
+
+		span {
+			font-size: 2rem;
+			font-weight: bold;
+			color: #35012c
+		}
+
+
+		.hero h1 {
+			font: bold 4rem "Quicksand", sans-serif;
+			margin-bottom: 1rem;
+			color: #fff;
+			text-shadow: 1px 2px #000;
+		}
+
+		.hero h3 {
+			color: #ffffff
+		}
+
+		h3 {
+			font: normal 1.5rem "Quicksand", sans-serif;
+			margin-bottom: 1rem;
+			text-shadow: 1px 1px black;
+		}
+
+		.hero-content-area {
+			text-align: center;
+			padding-top: 10%;
+			position: relative;
+			opacity: 0;
+			margin-top: 8rem;
+			animation: 1s slidefade forwards;
+		}
+
+		@keyframes slidefade {
+			100% {
+				opacity: 1;
+				margin: 0;
+			}
+		}
+
+
+		hr {
+			width: 20%;
+			height: 2px;
+			background-color: #7e2476;
+			border: 0;
+			margin-top: 0%;
+			margin-bottom: 2rem
+		}
+
+		.banner {
+			display: flex;
+			justify-content: start;
+			align-items: center;
+			margin: 0%;
+			position: relative;
+			width: 100%;
+			height: 17vh;
+			background-color: rgba(100, 1, 90, 0.5);
+			overflow: hidden;
+			color: white;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+
+		}
+
+		.banner h3,
+		.banner em {
+			padding: 2rem;
+		}
+
+		h2 {
+			text-transform: uppercase;
+			font: bold 3rem "Lato", sans-serif;
+			text-align: center;
+			color: rgba(100, 1, 90);
+			margin-bottom: 4px;
+		}
+
+
+		.about-p {
+			flex-basis: 60%;
+		}
+
+		.workout ul {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.workout li {
+			flex-basis: 30%;
+			list-style: none;
+			padding: 2rem;
+			overflow: hidden;
+			position: relative;
+
+		}
+
+		.workout li img {
+			width: 100%;
+			height: 20rem;
+			object-fit: cover;
+			position: relative;
+			z-index: 0;
+			transition: opacity 150ms ease-in;
+		}
+
+		.workout li:hover img {
+			opacity: 0.5;
+		}
+
+		.workout li:hover .overlay-right {
+			opacity: 1;
+			left: 60%;
+		}
+
+		.workout li:hover .overlay-left {
+			opacity: 0;
+			left: -50%;
+		}
+
+		.workout li:hover p {
+			opacity: 1;
+			left: 50%;
+		}
+
+		.overlay-left {
+			position: absolute;
+			top: 76%;
+			left: 36%;
+			background-color: #2e0d4c;
+			height: 20%;
+			transition: 300ms ease-in;
+			transform: translate(-50%, -50%);
+			opacity: 1;
+			width: 62%;
+		}
+
+		.overlay-right {
+			position: absolute;
+			top: 50%;
+			left: 100%;
+			width: 100%;
+			background-color: rgb(46, 13, 76, 0.8);
+			height: 20%;
+			transition: 300ms ease-in;
+			transform: translate(-50%, -50%);
+			opacity: 0;
+		}
+
+		.overlay-right p {
+			position: absolute;
+			left: 100%;
+			top: 50%;
+			opacity: 0;
+			transition: all 100ms ease-in;
+			transform: translate(-50%, -50%);
+			font-family: "Quicksand", sans-serif;
+			color: whitesmoke;
+			font-weight: bold;
+		}
+
+		.overlay-left p {
+			position: absolute;
+			left: 38%;
+			top: 50%;
+			font-weight: bold;
+			transition: all 100ms ease-in;
+			transform: translate(-50%, -50%);
+			font-family: "Quicksand", sans-serif;
+			color: whitesmoke;
+		}
+
+		.banner span {
+			font-size: 2rem;
+			font-weight: bold;
+			color: #35012c
+		}
+
+		footer {
+			background-color: grey;
+			padding: 2rem 2rem;
+			display: flex;
+			justify-content: center;
+			background-color: rgba(41, 0, 37, 0.4);
+		}
+
+		.copyright {
+			color: white;
+			font-size: 1.1rem;
+		}
+
+		@media screen and (max-width: 900px) {
+
+			header {
+				padding: 1rem;
+			}
+
+			.workout ul {
+				flex-direction: column;
+			}
+
+			.hero .background-image {
+				background-position: center;
+				width: 100%;
+				height: 100%;
+				background-size: cover;
+				z-index: -1;
+				background-color: #fff;
+				background-image: url("Gymimgs/img-1.jpg");
+			}
+
+			.background-image figure {
+				display: none;
+			}
+		}
+
+		@media screen and (max-width:500px) {
+			section {
+				padding: 5rem 2rem;
+			}
+
+			.overlayTexts {
+				font-size: 14px;
+			}
+
+			p {
+				margin-bottom: 2rem;
+				font-size: 1.2rem;
+			}
+
+			.menu-mobile {
+				position: absolute;
+				right: -30rem;
+				display: block;
+				z-index: 99;
+				background-color: cadetblue;
+				display: none;
+			}
+
+			.hero-content-area {
+				padding-top: 50%;
+			}
+
+			.banner {
+				height: 100%;
+			}
+
+			.workout li {
+				padding: 0;
+			}
+
+			.overlay-left {
+				left: 31%;
+			}
+
+			footer {
+				flex-direction: column-reverse;
+			}
+
+			.overlay-left,
+			.overlay-right {
+				height: 6rem !important;
+			}
+
+			.banner {
+				height: 27% !important;
+			}
+		}
+
+		@media only screen and (max-width: 230px) {
+			.overlayTexts {
+				font-size: 10px;
+			}
+
+			h2 {
+				font-size: 2rem;
+			}
+
+			#about .row {
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
+
+			.banner h3,
+			.banner em {
+				padding: 4px;
+			}
+		}
+
+		@media only screen and (max-width: 200px) {
+			h3 {
+				font-size: 1.5rem;
+				margin-top: 1rem;
+			}
+
+			p {
+				font-size: 1rem;
+			}
+
+			footer {
+				padding: 1rem;
+			}
+
+		}
+
+		@media only screen and (max-width: 1024px) {
+			.workout li:hover p {
+				font-size: 12px;
+			}
+		}
+
+		@media only screen and (max-width: 749px) {
+			.banner>#takecare {
+				font-size: 1.5rem;
+			}
+		}
+
+		@media only screen and (max-width: 1370px) {
+			.dietimgs {
+				width: 100%
+			}
+		}
+
+		@media only screen and (max-width: 593px) {
+			.banner>#takecare {
+				font-size: 1rem;
+			}
+		}
+
+		@media only screen and (max-width: 827px) {
+			.banner>#start {
+				font-size: 1rem;
+			}
+		}
+
+		@media only screen and (max-width: 767px) {
+
+			.left-most,
+			.center,
+			.right-most {
+				border: 0;
+				border-radius: 20px;
+				margin-bottom: 10px;
+			}
+
+			.workout li:hover p {
+				font-size: 14px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<header class="desktop-header">
+		<div class="mobile-header">
+			<h1 style="margin-bottom:0;"><a href="#"></a>&nbsp;&nbsp;<a href="#fitney">Fitzo</a></h1>
+			<nav class="menu-mobile">
+				<li><a class="scroll" href="#about">About</a></li>
+				<li><a class="scroll" href="#workout">Workout</a></li>
+				<li><a class="scroll" href="#diet">Diet Plan</a></li>
+			</nav>
+		</div>
+		<nav class="menu-links">
+			<li><a class="scroll" href="#about">About</a></li>
+			<li><a class="scroll" href="#workout">Workout</a></li>
+			<li><a class="scroll" href="#diet">Diet Plan</a></li>
+		</nav>
+	</header>
+	<section class="hero">
+		<div class="header-img">
+		</div>
+		<div class="hero-content-area" id="fitney">
+			<h1>Fitzo.</h1>
+			<h3>Eat Better. Move More. Believe in Yourself.</h3>
+		</div>
+	</section>
+	<div class="banner">
+		<h3 id="start">Every journey begins with a <span>step</span>. But you'll never finish if you don't
+			<span>start.</span>
+		</h3>
+		<div class="banner-1">
+		</div>
+	</div>
+
+	<section id="about" class="about">
+
+		<h2>About</h2>
+		<hr>
+		<div class="row" style="display: flex; justify-content: center;">
+			<div class="col-lg-3 col-md-6  left-most">
+				<h3>Fitness</h3>
+				<p>Regular exercise and physical activity promotes strong muscles and bones.It improves respiratory,
+					cardiovascular health, and it also helps you to maintain a healthy weight.</p>
+			</div>
+			<div class="col-lg-3 col-md-6  center">
+				<h3>Exercise</h3>
+				<p>It helps people lose weight and lower the risk of some diseases. Exercising regularly lowers a
+					person's risk of developing some diseases, including obesity,type 2 diabetes, and high blood
+					pressure.</p>
+			</div>
+			<div class="col-lg-3 col-md-6 right-most">
+				<h3>Yoga</h3>
+				<p>Regular yoga practice creates mental clarity and calmness, increases body awareness, relieves chronic
+					stress patterns, relaxes the mind, centers attention, and sharpens concentration.</p>
+			</div>
+		</div>
+	</section>
+	<div class="banner">
+		<h3>Get <span>fit</span>. Get <span>motivated</span>. Get <span>inspired</span>.</h3>
+		<div class="banner-2">
+		</div>
+	</div>
+	<section id="workout" class="workout">
+		<h2>Workout Tips.</h2>
+		<hr>
+		<h4>You can craft your own workout schedule according to your needs, whether you want to lose weight, get fit or
+			build more muscles, These are your right choice!!</h4>
+		<ul>
+			<li>
+				<img src="Gymimgs/img-1.jpg">
+				<div class="overlay-left">
+					<p class="overlayTexts">Do you want to stay fit?
+					</p>
+				</div>
+				<div class="overlay-right">
+					<p class="overlayTexts">Then take 6000-10000 steps per day.</p>
+				</div>
+			</li>
+			<li>
+				<img src="Gymimgs/img-2.jpg">
+				<div class="overlay-left">
+					<p class="overlayTexts">You want to build more muscles?</p>
+				</div>
+				<div class="overlay-right">
+					<p class="overlayTexts">Dumbbell preacher curl.<br>
+						3 Sets | 6-8 Reps | 90 sec break
+					</p>
+
+				</div>
+			</li>
+			<li>
+				<img src="Gymimgs/img-3.jpg">
+				<div class="overlay-left">
+					<p class="overlayTexts">Do you want to lose your belly fat?</p>
+				</div>
+				<div class="overlay-right">
+					<p class="overlayTexts">Crunches.<br>
+						2 Sets | 25 Reps | 90 sec break
+					</p>
+				</div>
+			</li>
+			<li>
+				<img src="Gymimgs/img-4.jpg">
+				<div class="overlay-left">
+					<p class="overlayTexts">You want to include lower back workout?</p>
+				</div>
+				<div class="overlay-right">
+					<p class="overlayTexts">Then go for Glute bridge.<br>
+						3 Sets | 15 Reps | 5 sec break
+					</p>
+				</div>
+			</li>
+			<li>
+				<img src="Gymimgs/img-5.jpg">
+				<div class="overlay-left">
+					<p class="overlayTexts">Do you want to work on ur leg muscles?</p>
+				</div>
+				<div class="overlay-right">
+					<p class="overlayTexts">Try lunges.<br>
+						2 Sets | 20 Reps | 60 sec break
+					</p>
+				</div>
+			</li>
+			<li>
+				<img src="Gymimgs/img-6.jpg">
+				<div class="overlay-left">
+					<p class="overlayTexts">Need more Abs?</p>
+				</div>
+				<div class="overlay-right">
+					<p class="overlayTexts">Do Planks.<br>
+						4-5 sets | 45 sec break
+					</p>
+				</div>
+			</li>
+		</ul>
+	</section>
+	<div class="banner">
+		<h3 id="takecare">your body is your most priceless possession. <span>take care of it.</span></h3>
+		<div class="banner-3">
+		</div>
+	</div>
+	<section id="diet" class="diet">
+		<h2>Plan out your diet!</h2>
+		<hr>
+		<h4>Start investing today in the most important person of your life,<span>YOU</span>.</h4>
+
+		<div class="row" id="diet-desc">
+			<div class="col-md-12">
+				<div class="row diet-left1">
+
+					<div class="col-md-5" style="margin-top: 1rem;">
+						<img src="Gymimgs/diet-1.jpg" class="dietimgs">
+					</div>
+
+					<div class="col-md-7" style="margin-top: 1rem;">
+						<h3>1.Choose the Right Type of Carbs</h3>
+						<p>Carbohydrates (also known as carbs) have long been demonized as weight loss worst enemy, but
+							they are actually the most efficient energy source for your body and an essential part of a
+							weight loss diet.
+							However, not all carbs are made the same…
+							Whole carbs like grains, tubers, legumes, and vegetables are minimally processed and are
+							full of fiber and nutrients so they keep you satiated while providing sustained energy for
+							your daily tasks and exercise.
+							On the other hand, processed carbs such as white flour, pastries, sodas, snacks, pasta,
+							sweets, and added sugars have had most of the nutrients and fiber removed.
+							For this reason, they cause rapid spikes in blood sugar and insulin levels, followed by a
+							drop in blood sugar, that leads to cravings and overeating.
+						</p>
+					</div>
+				</div>
+
+				<div class="row diet-right1">
+
+					<div class="col-md-7">
+						<h3>2.Eat High Protein Vegan Foods</h3>
+						<p>Protein is one of the most important nutrients for weight loss since it can boost your
+							metabolism, help reduce appetite and regulate weight-controlling hormones.
+							And contrary to popular belief, there are plenty of vegan sources where you can get your
+							protein from.
+							But if you are new to a vegan diet it is important to be intentional and make sure to
+							include high-protein foods in all your meals.
+							Some of the best sources of vegan protein include tofu, tempeh, seitan, and legumes such as
+							beans and lentils which are great staples to build your meals around.
+							Additionally, foods like vegetables, nuts, and seeds can also help you increase your protein
+							intake and support your weight loss goals.
+						</p>
+
+					</div>
+
+					<div class="col-md-5">
+						<img src="Gymimgs/diet-21.jpg" class="dietimgs">
+					</div>
+
+				</div>
+
+				<div class="row diet-left1">
+
+					<div class="col-md-5" style="margin-top: 1rem;">
+						<img src="Gymimgs/diet-3.jpg" class="dietimgs">
+					</div>
+
+					<div class="col-md-7" style="margin-top: 1rem;">
+						<h3>3.Avoid Oils and High Fat Foods</h3>
+						<p>There are often highly processed foods that offer low nutrients compared to the high number
+							of calories per serving.
+							To give you an idea, vegetables typically have around 100 calories per pound and fruits 300
+							calories per pound.
+							<bold>Oil, on the other hand, has 4,000 calories per pound.</bold>
+							The same applies to junk and fast food which are usually <bold>fried</bold> or <bold>made
+								with a lot of oil</bold> to add flavor to it and help preserve it in a cheap way.
+						</p>
+					</div>
+
+				</div>
+
+				<div class="row diet-right1">
+
+					<div class="col-md-7">
+						<h3>4.Don’t Be Afraid of Fiber</h3>
+						<p>Fiber has many health benefits including being beneficial for weight loss.
+							Since it takes longer to digest than sugar and simple carbs, fiber is more satiating and
+							keeps you full for longer.
+							Thus, helping you avoid cravings and stay on track with your diet.
+							Vegans already eat more fiber than those on a regular American diet but being mindful about
+							your fiber intake can help you lose weight faster, even if that is the only change you make
+							to your diet.
+						</p>
+					</div>
+
+					<div class="col-md-5">
+						<img src="Gymimgs/diet-4.jpg" class="dietimgs">
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="copyright">
+			Copyright © AshCryptsCapts.
+		</div>
+	</footer>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+		</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+		</script>
+</body>
+
+</html>
